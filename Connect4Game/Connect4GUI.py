@@ -2,8 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 import Connect4Game as game
 import DanielBatyrevAI as DanielAI
-import YosefBirnbaumAI as YosefAI
-import ShmulyStudentAI as ShmulyAI
 import copy
 random_choice = DanielAI.RandomStrategy()
 yosef_choice = YosefAI.AI_strategy()
