@@ -1,17 +1,21 @@
 import Connect4Game
-import DanielBatyrevAI as DanielAI
+import DanielBatyrev2AI as DanielAI
 import copy
 import func_timeout
-import ShmulyStudentAI as ShmulyAI
-import YosefBirnbaumAI as YosefAI
+import matplotlib.pyplot as plt
+import YosefBirnbaumAI
+import ShmulyStudentAI
+import shmueflugAI
+import MordechaiSingerAI
+import BasyaRosenthalAI
 
-competitor_list = [ShmulyAI.NotRandomStrategy(),YosefAI.AI_strategy()]
+competitor_list = [BasyaRosenthalAI.BasyaRosenthalAI(),MordechaiSingerAI.MinimaxStrategy()]
 
 MAX_WAIT_TIME = 1
 winners = list()
-random_choice = DanielAI.RandomStrategy()
+random_choice = DanielAI.RandomStrategy2()
 
-for game_nr in range(1000):
+for game_nr in range(100):
     print(game_nr + 1)
     tie = False
     game = Connect4Game.Connect4Game()
@@ -38,3 +42,15 @@ for item in winners:
     dictionary[item] = dictionary.get(item, 0) + 1
 
 print(dictionary)
+
+plt.figure(figsize=(8, 6))
+plt.bar(dictionary.keys(), dictionary.values(), color=['blue', 'green', 'red'])
+plt.title("Connect 4 Results Analysis", fontsize=16)
+plt.xlabel("Result", fontsize=14)
+plt.ylabel("Number of Wins", fontsize=14)
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+for i, value in enumerate(dictionary.values()):
+    plt.text(i, value + 5, str(value), ha='center', fontsize=12)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()

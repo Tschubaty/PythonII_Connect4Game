@@ -1,11 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
 import Connect4Game as game
-import DanielBatyrevAI as DanielAI
 import copy
-random_choice = DanielAI.RandomStrategy()
-yosef_choice = YosefAI.AI_strategy()
-shmuli_choice = ShmulyAI.NotRandomStrategy()
+import MordechaiSingerAI
+import DanielBatyrev2AI as DanielAI
+import BasyaRosenthalAI as BasyaAI
+
+mordechai_choice = MordechaiSingerAI.MinimaxStrategy()
+basya_choice = BasyaAI.BasyaRosenthalAI()
 
 class Connect4GUI:
     def __init__(self, master):
@@ -34,7 +36,7 @@ class Connect4GUI:
             self.master.destroy()
         else:
             game_copy = copy.deepcopy(self.game)
-            self.game.make_move(shmuli_choice.strategy(game_copy))
+            self.game.make_move(basya_choice.strategy(game_copy))
             self.draw_board()
             if self.game.winner is not None:
                 winner_text = f"Player {self.game.winner} wins!"
